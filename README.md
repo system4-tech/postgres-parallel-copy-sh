@@ -1,6 +1,6 @@
 # [`postgres-parallel-copy-sh`](dist/postgres-parallell-copy.sh)
 
-This repository contains shell scripts for parallel copying of CSV/TSV data into a PostgreSQL table
+This repository contains shell scripts for parallel copying CSV/TSV data into a PostgreSQL table
 
 ## Usage
 
@@ -12,7 +12,7 @@ Options:
   -t    Target PostgreSQL table (required)
   -b    Number of rows per batch (default: 5000)
   -c    Columns to copy (optional)
-  -o    COPY options (default: CSV)
+  -o    COPY options (default: FORMAT CSV)
   -p    Number of parallel workers (default: 4)
   -h    Show this help message
 ```
@@ -24,11 +24,6 @@ PG_HOST=localhost
 PG_USER=postgres
 PG_PASSWORD=postgres
 
-postgres-parallel-copy -f example.csv -o CSV -t example
+postgres-parallel-copy -f example.csv -t example
 ```
 
-## TSV
-
-```sh
-postgres-parallel-copy -f example.tsv -o TEXT -t example
-```

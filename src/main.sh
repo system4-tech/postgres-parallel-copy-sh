@@ -23,7 +23,7 @@ main() {
   local batch_size=5000
   local max_parallel=4
   local options="FORMAT CSV"
-  local columns
+  local columns=""
 
   while getopts ":f:t:b:c:o:p:h" opt; do
     case "$opt" in
@@ -38,7 +38,7 @@ main() {
     esac
   done
 
-  : ${file:?Missing required <product> argument}
+  : ${file:?Missing required <file> argument}
   : ${table:?Missing required <table> argument}
 
   if is_set "$columns"; then
