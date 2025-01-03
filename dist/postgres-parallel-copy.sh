@@ -717,7 +717,7 @@ script_load() {
   fi
 }
 
-set -euo pipefail
+set -u
 
 usage() {
   cat <<EOF

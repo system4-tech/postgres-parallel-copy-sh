@@ -2,7 +2,7 @@
 
 . ./../lib/utils.sh
 
-set -euo pipefail
+set -u
 
 usage() {
   cat <<EOF
