@@ -2,8 +2,6 @@
 
 . ./../lib/utils.sh
 
-set -u
-
 usage() {
   cat <<EOF
 Usage: $0 -f <file> -t <table> [-b <batch_size>] [-c <columns>] [-o <options>] [-p <max_parallel>]
@@ -23,8 +21,7 @@ main() {
   local batch_size=5000
   local max_parallel=4
   local options="FORMAT CSV"
-  local columns=""
-  local temp_dir
+  local columns temp_dir
 
   while getopts ":f:t:b:c:o:p:h" opt; do
     case "$opt" in
@@ -49,7 +46,7 @@ main() {
   temp_dir=$(mktemp -d)
   trap 'rm -rf "$temp_dir"' EXIT
 
-  file_split "$file" "$temp_dir" "$batch_size" | {
+  file_split "$file" "${temp_dir%/}/" "$batch_size" | {
     parallel -j "$max_parallel" \
     "psql -c 'COPY ${table} ${columns} FROM STDIN WITH (${options})' < {}"
   }
