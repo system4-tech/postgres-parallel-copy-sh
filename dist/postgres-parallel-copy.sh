@@ -739,6 +739,7 @@ main() {
   local max_parallel=4
   local options="FORMAT CSV"
   local columns=""
+  local temp_dir
 
   while getopts ":f:t:b:c:o:p:h" opt; do
     case "$opt" in
@@ -753,8 +754,8 @@ main() {
     esac
   done
 
-  : ${file:?Missing required <file> argument}
-  : ${table:?Missing required <table> argument}
+  : "${file:?Missing required <file> argument}"
+  : "${table:?Missing required <table> argument}"
 
   if is_set "$columns"; then
     columns="(${columns})"
